@@ -39,6 +39,10 @@
     </script>
     
     <style>
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             background-color: #0B0F19;
             color: #F8FAFC;
@@ -193,12 +197,12 @@
 
                 <!-- Right: Visual / Code Widget -->
                 <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
-                    <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 border border-white/10 flex items-center justify-center relative overflow-hidden backdrop-blur-sm shadow-2xl shadow-brand-primary/20">
+                    <div class="w-[calc(100vw-2rem)] h-[calc(100vw-2rem)] max-w-72 max-h-72 sm:w-96 sm:h-96 sm:max-w-none sm:max-h-none rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 border border-white/10 flex items-center justify-center relative overflow-hidden backdrop-blur-sm shadow-2xl shadow-brand-primary/20">
                         <img src="MyProfile.jpg" alt="Yaseen Bilal" class="w-full h-full object-cover object-center">
                     </div>
 
                     <!-- Floating Code Snippet Card -->
-                    <div class="absolute -bottom-8 lg:-bottom-12 -left-4 sm:left-4 lg:-left-12 glass-card p-5 rounded-xl border border-white/10 shadow-2xl animate-float font-mono text-xs sm:text-sm z-20 w-[300px]">
+                    <div class="absolute -bottom-8 lg:-bottom-12 -left-4 sm:left-4 lg:-left-12 glass-card p-5 rounded-xl border border-white/10 shadow-2xl animate-float font-mono text-xs sm:text-sm z-20 w-full max-w-[300px]">
                         <div class="flex gap-2 mb-3 border-b border-white/10 pb-2">
                             <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
                             <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
@@ -534,10 +538,10 @@
         </section>
 
         <section id="contact" class="scroll-mt-32 border-t border-white/10 pt-20">
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-w-0">
                 
                 <!-- Contact Text -->
-                <div class="space-y-6">
+                <div class="space-y-6 min-w-0">
                     <div class="flex items-center gap-3 text-brand-secondary font-bold uppercase tracking-widest text-sm">
                         <span class="w-8 h-[2px] bg-brand-secondary"></span> Let's Work Together
                     </div>
@@ -553,7 +557,7 @@
                             <div class="w-12 h-12 rounded-xl glass flex items-center justify-center border border-white/10 group-hover:border-brand-primary">
                                 <i class="fa-regular fa-envelope text-xl text-brand-primary"></i>
                             </div>
-                            <span>s-yaseen.bilal@zewailcity.edu.eg</span>
+                            <span class="break-all">s-yaseen.bilal@zewailcity.edu.eg</span>
                         </a>
                     </div>
 
@@ -568,23 +572,25 @@
                 </div>
 
                 <!-- Custom Message Form UI -->
-                <div class="glass-card p-8 rounded-3xl relative">
-                    <form id="contact-form" class="space-y-5" onsubmit="event.preventDefault(); showSuccess();">
-                        <div class="grid grid-cols-2 gap-5">
-                            <div class="col-span-2 sm:col-span-1">
-                                <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Name</label>
-                                <input type="text" required class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition" placeholder="John Doe">
+                <div class="glass-card p-5 sm:p-8 rounded-3xl relative min-w-0">
+                    <form id="contact-form" action="https://formsubmit.co/ajax/s-yaseen.bilal@zewailcity.edu.eg" method="POST" class="space-y-5">
+                        <input type="hidden" name="_subject" value="New portfolio contact message">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="contact-name" class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Name</label>
+                                <input id="contact-name" name="name" type="text" autocomplete="name" required class="w-full min-w-0 bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition" placeholder="John Doe">
                             </div>
-                            <div class="col-span-2 sm:col-span-1">
-                                <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Email</label>
-                                <input type="email" required class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition" placeholder="john@example.com">
+                            <div>
+                                <label for="contact-email" class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Email</label>
+                                <input id="contact-email" name="email" type="email" autocomplete="email" required class="w-full min-w-0 bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition" placeholder="john@example.com">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Message</label>
-                            <textarea rows="4" required class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition resize-none" placeholder="Tell me about your project..."></textarea>
+                            <label for="contact-message" class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wide">Message</label>
+                            <textarea id="contact-message" name="message" rows="4" required class="w-full min-w-0 bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition resize-none" placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl transition">
+                        <p id="form-error" class="hidden text-sm text-red-300" role="alert"></p>
+                        <button id="contact-submit" type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl transition">
                             Send Message
                         </button>
                     </form>
@@ -654,16 +660,48 @@
 
         // Form Success Logic (avoiding native alerts)
         function showSuccess() {
-            const form = document.getElementById('contact-form');
             const msg = document.getElementById('success-msg');
             msg.classList.remove('opacity-0', 'pointer-events-none');
-            form.reset();
         }
 
         function hideSuccess() {
             const msg = document.getElementById('success-msg');
             msg.classList.add('opacity-0', 'pointer-events-none');
         }
+
+        const contactForm = document.getElementById('contact-form');
+        const formError = document.getElementById('form-error');
+        const submitButton = document.getElementById('contact-submit');
+
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            formError.textContent = '';
+            formError.classList.add('hidden');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { Accept: 'application/json' }
+                });
+                const result = await response.json();
+
+                if (!response.ok || result.success !== 'true') {
+                    throw new Error('The message could not be sent.');
+                }
+
+                contactForm.reset();
+                showSuccess();
+            } catch (error) {
+                formError.textContent = 'Unable to send your message right now. Please try again or email s-yaseen.bilal@zewailcity.edu.eg directly.';
+                formError.classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
+        });
     </script>
 </body>
 </html>
